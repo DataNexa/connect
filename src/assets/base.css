@@ -1,0 +1,53 @@
+/* color palette  */
+
+.bg-main {
+  background-color: #0052ED;
+}
+
+.c-main {
+  color: #0052ED;
+}
+
+.bg-dark-blue {
+  background-color: #003399;
+}
+
+.c-dark-blue {
+  color: #003399;
+}
+
+.bg-clean {
+  background-color: #F9F9F9;
+}
+
+.c-text {
+  color: #4D4D4D;
+}
+
+.f-text {
+  fill: #4D4D4D;
+}
+
+.active-link {
+  color: #0052ED;
+  fill:  #0052ED;
+}
+
+.btn-outline {
+  border: 1px solid #0052ED;
+  color: #0052ED;
+  background-color: white;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+
+.btn-outline:hover {
+  color: white;
+  background-color: #0052ED;
+}
+
+.modal {
+  background-color: #F9F9F9;
+  border: 1px solid #999999;
+  border-radius: 10px;
+}
