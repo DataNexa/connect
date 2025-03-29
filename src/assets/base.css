@@ -46,8 +46,8 @@
   background-color: #0052ED;
 }
 
-.modal {
+.modald {
   background-color: #F9F9F9;
-  border: 1px solid #999999;
+  border: 3px solid #999999;
   border-radius: 10px;
 }
