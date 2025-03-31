@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container-fluid bg-dark-blue bgx" style="position: fixed; height:100%; background-image: url('/datanexa_connect_bg_login.png');">
+    <div v-if="!loading" class="container-fluid bg-dark-blue bgx" style="position: fixed; height:100%; background-image: url('/datanexa_connect_bg_login.png');">
 
         <div class="row justify-content-center py-4">
 
@@ -22,6 +22,8 @@
 
     </div>
 
+    <LoadingFull v-else :percent="percent"/>
+
 </template>
 
 <style scoped>
@@ -35,18 +37,31 @@
 </style>
 
 <script lang="ts">
-import login from './widgets/login.vue';
-import code from './widgets/code.vue';
-import forgot from './widgets/forgot.vue';
+import login from '@/pages/auth/widgets/login.vue';
+import code from '@/pages/auth/widgets/code.vue';
+import forgot from '@/pages/auth/widgets/forgot.vue';
+import LoadingFull from '@/components/LoadingFull.vue';
+import NewPass from '@/pages/auth/widgets/newPass.vue';
+
 import { defineComponent } from 'vue'
+
 
 export default defineComponent({
 
-    components:{login,code,forgot},
+    components:{ login, code, forgot, LoadingFull, NewPass },
+
+    created() {
+        this.loadData()
+    },
 
     data() {
         return {
-            component:'code'
+            component:'login',
+            loading:false,
+            percent:0,
+            dataUser:{
+                logged:false
+            }
         }
     },
 
@@ -54,8 +69,34 @@ export default defineComponent({
         goTo(page:string){
             this.component = page
         },
-        loadData(){
+        async loadData(){
+            this.loading = true 
+            // todo
+            // fake sem uma sessão
+            this.component = 'login'
 
+            //this.$emit('logged')
+            this.loading = false
+            return
+
+            await new Promise<void>(resolve => {
+                this.percent = 0
+                const interval = setInterval(() => {
+                    if(this.percent == 100){
+                        resolve()
+                        clearInterval(interval)
+                        return
+                    }
+                    this.percent += 10
+                }, 500)
+            })
+
+            setTimeout(() => {
+                
+                this.loading = false
+                // fake com uma sessão
+                this.$emit('logged')
+            }, 1000)
         }
     },
 

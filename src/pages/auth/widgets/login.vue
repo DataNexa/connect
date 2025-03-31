@@ -20,7 +20,24 @@
             </div>
         </div>
     </form>
+    <hr>
+    <p class="text-center c-text">Entre usando:</p>
 
+    <div class="btn-group w-100 mb-2" role="group">
+        <span class="border border-primary bg-white px-2" style="height:50px;"><img class="" src="/facebook.png" style="height:40px; margin-top:5px;" alt=""></span>
+        <button class="btn btn-primary w-100" style="height:50px">Login com Facebook</button>
+    </div>
+    
+    <div class="btn-group w-100 mb-4" role="group">
+        <span class="border border-danger bg-white px-2" style="height:50px;"><img class="" src="/google.png" style="height:40px; margin-top:5px;" alt=""></span>
+        <button class="btn btn-danger w-100" style="height:50px">Login com Google</button>
+    </div>
+
+    <hr>
+
+    <p class="text-center c-text">Ou Crie uma Conta:</p>
+
+    <button class="btn btn-primary my-2 ms-auto d-block w-100 mb-4" type="button">CRIAR CONTA</button>
 
 </template>
 
