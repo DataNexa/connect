@@ -1,10 +1,10 @@
 <template>
 
-    <div v-if="!loading" class="container-fluid bg-dark-blue bgx" style="position: fixed; height:100%; background-image: url('/datanexa_connect_bg_login.png');">
+    <div v-if="!loading" class="container-fluid bg-dark-blue bgx" style="overflow:auto; position: fixed; height:100%; background-image: url('/datanexa_connect_bg_login.png');">
 
         <div class="row justify-content-center py-4">
 
-            <div class="col-10 col-md-6 col-lg-3 modald" style="display: block;">
+            <div class="col-10 col-md-8 col-lg-3 modald" style="display: block;">
                 
                 <div class="row py-2">
                     <div class="col-12">
@@ -73,9 +73,9 @@ export default defineComponent({
             this.loading = true 
             // todo
             // fake sem uma sessão
-            this.component = 'login'
+            //this.component = 'login'
 
-            //this.$emit('logged')
+            this.$emit('logged')
             this.loading = false
             return
 

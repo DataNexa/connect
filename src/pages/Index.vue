@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column flex-md-row">
         <!-- Botão para abrir menu no mobile -->
-         <div class="container-fluid d-md-none">
+        <div class="container-fluid d-md-none">
             <div class="row">
                 <div class="col-3">
                     <button class="btn btn-light btn-sm m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-         </div>
+        </div>
         
         
 
@@ -47,11 +47,6 @@
                     <router-link class="nav-link c-text fw-bold" exact-active-class="active-link" to="/seguranca">
                         <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 14.5V16.5M7 10.0288C7.47142 10 8.05259 10 8.8 10H15.2C15.9474 10 16.5286 10 17 10.0288M7 10.0288C6.41168 10.0647 5.99429 10.1455 5.63803 10.327C5.07354 10.6146 4.6146 11.0735 4.32698 11.638C4 12.2798 4 13.1198 4 14.8V16.2C4 17.8802 4 18.7202 4.32698 19.362C4.6146 19.9265 5.07354 20.3854 5.63803 20.673C6.27976 21 7.11984 21 8.8 21H15.2C16.8802 21 17.7202 21 18.362 20.673C18.9265 20.3854 19.3854 19.9265 19.673 19.362C20 18.7202 20 17.8802 20 16.2V14.8C20 13.1198 20 12.2798 19.673 11.638C19.3854 11.0735 18.9265 10.6146 18.362 10.327C18.0057 10.1455 17.5883 10.0647 17 10.0288M7 10.0288V8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8V10.0288" stroke="#0052ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         Segurança</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link c-text fw-bold" exact-active-class="active-link" to="/contas">
-                        <svg fill="#0052ED" width="24px" height="24px" viewBox="0 0 32 32" id="Outlined" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Fill"> <path d="M20,19a5,5,0,1,0-5-5A5,5,0,0,0,20,19Zm0-8a3,3,0,1,1-3,3A3,3,0,0,1,20,11Z"></path> <path d="M8.94,10a4,4,0,1,0-4-4A4,4,0,0,0,8.94,10Zm0-6a2,2,0,1,1-2,2A2,2,0,0,1,8.94,4Z"></path> <path d="M25,20H15a5,5,0,0,0-5,5v5h2V25a3,3,0,0,1,3-3H25a3,3,0,0,1,3,3v5h2V25A5,5,0,0,0,25,20Z"></path> <path d="M13,11H6a4,4,0,0,0-4,4v4H4V15a2,2,0,0,1,2-2h7Z"></path> </g> </g></svg>
-                        Contas Vinculadas</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link c-text fw-bold" exact-active-class="active-link" to="/integracoes">
