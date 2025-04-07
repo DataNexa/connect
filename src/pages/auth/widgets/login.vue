@@ -7,9 +7,22 @@
             <label for="email" class="visually-hidden">Email</label>
             <input type="text" class="form-control" id="email" placeholder="E-mail">
         </div>
-        <div class="col-auto py-1">
+        <div class="col-auto py-1 position-relative" style="padding-right: 40px;">
             <label for="senha" class="visually-hidden">Senha</label>
-            <input type="Senha" class="form-control" id="senha" placeholder="Senha">
+            <input
+                :type="showPassword ? 'text' : 'password'"
+                class="form-control"
+                id="senha"
+                placeholder="Senha"
+            >
+            <button
+                type="button"
+                class="btn btn-sm position-absolute"
+                @click="() => showPassword = !showPassword"
+                style="top: 50%; right: 10px; transform: translateY(-50%); z-index: 2;background-color: transparent; cursor: pointer;"
+            >
+                <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
         </div>
         <div class="row px-1">
             <div class="col-6">
@@ -37,7 +50,7 @@
 
     <p class="text-center c-text">Ou Crie uma Conta:</p>
 
-    <button class="btn btn-primary my-2 ms-auto d-block w-100 mb-4" type="button">CRIAR CONTA</button>
+    <button @click="() => $emit('goTo', 'create')" class="btn btn-primary my-2 ms-auto d-block w-100 mb-4" type="button">CRIAR CONTA</button>
 
 </template>
 
@@ -45,6 +58,14 @@
 
 import { defineComponent } from 'vue'
 
-export default defineComponent({})
+export default defineComponent({
+
+    data() {
+        return {
+            showPassword:false,
+        }
+    },
+
+})
 
 </script>

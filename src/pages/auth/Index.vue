@@ -42,13 +42,14 @@ import code from '@/pages/auth/widgets/code.vue';
 import forgot from '@/pages/auth/widgets/forgot.vue';
 import LoadingFull from '@/components/LoadingFull.vue';
 import NewPass from '@/pages/auth/widgets/newPass.vue';
+import create from './widgets/create.vue';
 
 import { defineComponent } from 'vue'
 
 
 export default defineComponent({
 
-    components:{ login, code, forgot, LoadingFull, NewPass },
+    components:{ login, code, forgot, LoadingFull, NewPass, create },
 
     created() {
         this.loadData()
@@ -73,9 +74,9 @@ export default defineComponent({
             this.loading = true 
             // todo
             // fake sem uma sessão
-            //this.component = 'login'
+            this.component = 'login'
 
-            this.$emit('logged')
+            //this.$emit('logged')
             this.loading = false
             return
 
