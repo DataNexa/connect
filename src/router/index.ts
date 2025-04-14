@@ -12,17 +12,11 @@ const router = createRouter({
     {
       path: '/privacidade',
       name: 'privacidade',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('@/pages/privacidade/Index.vue'),
     },{
 
       path: '/seguranca',
       name: 'seguranca',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('@/pages/seguranca/Index.vue'),
     }
     

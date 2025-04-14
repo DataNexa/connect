@@ -41,10 +41,7 @@
         <button class="btn btn-primary w-100" style="height:50px">Login com Facebook</button>
     </div>
     
-    <div class="btn-group w-100 mb-4" role="group">
-        <span class="border border-danger bg-white px-2" style="height:50px;"><img class="" src="/google.png" style="height:40px; margin-top:5px;" alt=""></span>
-        <button class="btn btn-danger w-100" style="height:50px">Login com Google</button>
-    </div>
+    <LoginGoogle/>
 
     <hr>
 
@@ -57,8 +54,11 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue'
+import LoginGoogle from './LoginGoogle.vue'
 
 export default defineComponent({
+
+    components:{ LoginGoogle },
 
     data() {
         return {
