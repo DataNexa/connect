@@ -6,6 +6,7 @@
 </template>
 
 <script lang="ts">
+import api from '@/model/utils/api';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -29,22 +30,23 @@ export default defineComponent({
             (window as any).google.accounts.id.initialize({
                 client_id: googleClientId,
                 callback: async (response: { credential: string }) => {
-                    /*
-                    const res = await fetch('http://localhost:3001/auth/google', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ credential: response.credential })
-                    });
+                   
+                    if (!response.credential) {
+                        console.error('Erro ao obter credenciais do Google');
+                        return;
+                    }
 
-                    const data = await res.json();
-                    if (data.token) {
+                    const res = await api.post('/auth/google', {
+                        googleToken: response.credential
+                    }, true);
+
+                    if (res.code === 200) {
+                        const data = res.body;
                         localStorage.setItem('token', data.token);
                         console.log('Usuário logado:', data.user);
                     } else {
-                        console.error('Erro ao autenticar', data);
+                        console.error('Erro ao autenticar', res.message);
                     }
-                    */
-                   console.log(response.credential);
                    
                 },
                 ux_mode: 'popup',
