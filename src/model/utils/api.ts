@@ -1,11 +1,6 @@
+import { SessionManager } from "../libs/SessionManager";
 
 const apiUrl = import.meta.env.VITE_API_URL;
-
-interface HeaderAPI {
-    Accept: string;
-    'Content-Type': string;
-    Authorization?: string;
-}
 
 interface ResponseAPI {
     code: number;
@@ -13,59 +8,52 @@ interface ResponseAPI {
     message: string;
 }
 
-const get = async (url: string, token?: { type:string, value:string }):Promise<ResponseAPI> => {
+const buildHeaders = (token?: string): Record<string, string> => ({
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    ...(token && { Authorization: `Bearer ${token}` })
+});
 
-    let header:{ method:string, headers:HeaderAPI } = {
+const get = async (url: string, credentials: boolean = false): Promise<ResponseAPI> => {
+    
+    const token = SessionManager.getSessionToken();
+    const tempToken = SessionManager.getSessionTemp();
+    const usedToken = tempToken || token;
+
+    const header: RequestInit = {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    }
+        headers: buildHeaders(usedToken),
+        ...(credentials && { credentials: 'include' }),
+    };
 
-    if (token) {
-        header.headers['Authorization'] = `${token.type} ${token.value}`;
-    }
-
-    const response = await fetch(apiUrl+url, header as any);
-    let data = await response.json()
+    const response = await fetch(apiUrl + url, header);
+    const data = await response.json();
 
     if (!response.ok) {
-        return { code: response.status, body: null, message: data.message };
-    }
-
-    return { code: response.status, body: data.body, message:data.message };
-
-}
-
-const post = async (url: string, body: any, credentials: boolean = false, token?: { type:string, value:string }):Promise<ResponseAPI> => {
-
-    let header:{ method:string, headers:HeaderAPI, body:any, credentials?:'include' } = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    }
-    if (token) {
-        header.headers['Authorization'] = `${token.type} ${token.value}`;
-    }
-
-    if(credentials){
-        header.credentials = 'include';
-    }
-
-    const response = await fetch(apiUrl+url, header as any);
-    let data = await response.json();
-
-    if (!response.ok) {
-        return { code: response.status, body: null, message: data.message };
+        return { code: response.status, body: null, message: data.message || 'Erro inesperado' };
     }
 
     return { code: response.status, body: data.body, message: data.message };
+};
 
-}
+const post = async (url: string, body: any, credentials: boolean = false): Promise<ResponseAPI> => {
+    const token = SessionManager.getSessionToken();
 
+    const header: RequestInit = {
+        method: 'POST',
+        headers: buildHeaders(token),
+        body: JSON.stringify(body),
+        ...(credentials && { credentials: 'include' }),
+    };
+
+    const response = await fetch(apiUrl + url, header);
+    const data = await response.json();
+
+    if (!response.ok) {
+        return { code: response.status, body: null, message: data.message || 'Erro inesperado' };
+    }
+
+    return { code: response.status, body: data.body, message: data.message };
+};
 
 export default { get, post };

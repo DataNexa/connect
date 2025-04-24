@@ -50,6 +50,7 @@
     import Modal from '@/components/Modal.vue';
 
     import { defineComponent } from 'vue';
+import { SessionManager } from '@/model/libs/SessionManager';
 
     interface data {
         showToast:boolean,
@@ -82,6 +83,8 @@
 
         methods: {
             toasted(){
+                console.log(SessionManager.getSessionToken());
+                
                 this.showToast = true
             },
             hiddenToast(){

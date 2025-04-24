@@ -45,6 +45,8 @@ import NewPass from '@/pages/auth/widgets/newPass.vue';
 import create from './widgets/create.vue';
 
 import { defineComponent } from 'vue'
+import api from '@/model/utils/api';
+import { SessionManager } from '@/model/libs/SessionManager';
 
 
 export default defineComponent({
@@ -57,7 +59,7 @@ export default defineComponent({
 
     data() {
         return {
-            component:'login',
+            component:'LoadingFull',
             loading:false,
             percent:0,
             dataUser:{
@@ -70,17 +72,11 @@ export default defineComponent({
         goTo(page:string){
             this.component = page
         },
+
         async loadData(){
+            
             this.loading = true 
-            // todo
-            // fake sem uma sessão
-            this.component = 'login'
-
-            //this.$emit('logged')
-            this.loading = false
-            return
-
-            await new Promise<void>(resolve => {
+            new Promise<void>(resolve => {
                 this.percent = 0
                 const interval = setInterval(() => {
                     if(this.percent == 100){
@@ -89,16 +85,23 @@ export default defineComponent({
                         return
                     }
                     this.percent += 10
-                }, 500)
+                }, 250)
             })
+            const res = await api.get('/auth/openSession', true)
 
-            setTimeout(() => {
-                
-                this.loading = false
-                // fake com uma sessão
-                this.$emit('logged')
-            }, 1000)
+            if(res.code == 401){
+                this.component = 'login'
+                this.loading = false                
+                return
+            }
+            
+            SessionManager.saveSessionToken(res.body, 'session')
+
+            this.loading = false
+            this.$emit('logged')
+            
         }
+
     },
 
 })
